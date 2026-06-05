@@ -8,7 +8,7 @@ This document tracks the 10 scientific improvements applied to the LSA baseline 
 
 | # | Improvement | Status | Branch | Tag |
 |---|-------------|--------|--------|-----|
-| 1 | **Computational Complexity Analysis** — Operation counts and big-O for key expansion, encryption, and comparison with SPN/Feistel. | `[PENDING]` | `feat/improvement-1-complexity-analysis` | `v0.1.0` |
+| 1 | **Computational Complexity Analysis** — Operation counts and big-O for key expansion, encryption, and comparison with SPN/Feistel. | `[DONE]` | `feat/improvement-1-complexity-analysis` | `v0.1.0` |
 | 2 | **Theoretical Security Analysis** — Brute-force time estimation, differential cryptanalysis proof (active S-boxes), linear bias analysis, key sensitivity test. | `[PENDING]` | `feat/improvement-2-theoretical-security` | `v0.2.0` |
 | 3 | **NIST SP 800-22 Statistical Test Suite** — 15 NIST randomness tests on ciphertext output with p-values and pass/fail status. | `[PENDING]` | `feat/improvement-3-nist-tests` | `v0.3.0` |
 | 4 | **Quantitative Avalanche Analysis** — SAC, BIC, NPCR, and UACI measurements with statistical rigor. | `[PENDING]` | `feat/improvement-4-avalanche` | `v0.4.0` |

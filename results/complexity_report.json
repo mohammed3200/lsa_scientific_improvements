@@ -1,0 +1,104 @@
+{
+  "lsa": {
+    "algorithm": "LSA",
+    "key_expansion": {
+      "algorithm": "LSA",
+      "phase": "key_expansion",
+      "asymptotic": "O(1)",
+      "ops_per_function": {
+        "p_table_perm": 3,
+        "q_table_trans": 3,
+        "xor": 3,
+        "xnor": 2,
+        "left_shift": 3
+      },
+      "total_operations": 61,
+      "breakdown": {
+        "mask": 16,
+        "shift": 30,
+        "xor": 7,
+        "xnor": 2,
+        "p_table": 3,
+        "q_table": 3,
+        "s_box": 0
+      }
+    },
+    "encryption": {
+      "algorithm": "LSA",
+      "phase": "encryption",
+      "asymptotic": "O(1)",
+      "block_size_bits": 64,
+      "rounds": 5,
+      "per_round_operations": {
+        "xnor": 2,
+        "xor": 2,
+        "and": 2,
+        "left_shift": 2,
+        "s_box": 8,
+        "or": 2,
+        "swap": 2
+      },
+      "total_operations": 100,
+      "breakdown": {
+        "xnor": 10,
+        "xor": 10,
+        "and": 10,
+        "left_shift": 10,
+        "s_box": 40,
+        "or": 10,
+        "swap": 10
+      }
+    },
+    "summary": {
+      "xor_xnor": 29,
+      "s_box": 40,
+      "permutation": 6,
+      "shift": 40,
+      "total": 161
+    }
+  },
+  "spn": {
+    "algorithm": "SPN",
+    "key_expansion": {
+      "asymptotic": "O(r)"
+    },
+    "encryption": {
+      "asymptotic": "O(r)",
+      "rounds": 5,
+      "per_round": {
+        "xor": 1,
+        "s_box": 16,
+        "permutation": 1
+      }
+    },
+    "summary": {
+      "xor_xnor": 5,
+      "s_box": 80,
+      "permutation": 5,
+      "shift": 0,
+      "total": 90
+    }
+  },
+  "feistel": {
+    "algorithm": "Feistel",
+    "key_expansion": {
+      "asymptotic": "O(r)"
+    },
+    "encryption": {
+      "asymptotic": "O(r)",
+      "rounds": 8,
+      "per_round": {
+        "xor": 1,
+        "s_box": 8,
+        "permutation": 1
+      }
+    },
+    "summary": {
+      "xor_xnor": 8,
+      "s_box": 64,
+      "permutation": 8,
+      "shift": 0,
+      "total": 80
+    }
+  }
+}
