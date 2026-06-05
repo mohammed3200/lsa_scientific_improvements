@@ -1,0 +1,13 @@
+c17d7f3 (HEAD -> main, tag: v1.0.0, feat/improvement-10-formal-proof) feat(proof): add formal IND-CPA security proof and reduction to PRESENT S-Box
+3660c88 (tag: v0.9.0, feat/improvement-9-pdr-model) feat(model): add Markov-based analytical PDR model and validate against simulation
+f1d7afe (tag: v0.8.0, feat/improvement-8-side-channel) feat(security): add timing attack, DPA, and fault injection resistance tests
+0e21728 (tag: v0.7.0, feat/improvement-7-entropy) feat(analysis): add key space validation, Shannon entropy, and chi-square tests
+87311bd (tag: v0.6.0, feat/improvement-6-ascon-comparison) feat(standard): add comparison with NIST ASCON-128 lightweight standard
+2c8b4ce (tag: v0.5.0, feat/improvement-5-energy-model) feat(model): add analytical energy consumption model and validate against simulation
+08d92a3 (tag: v0.4.0, feat/improvement-4-avalanche) feat(analysis): add SAC, BIC, NPCR, and UACI avalanche measurements
+683b7e8 (tag: v0.3.0, feat/improvement-3-nist-tests) feat(tests): implement NIST SP 800-22 statistical test suite for ciphertext randomness
+d5804d0 (tag: v0.2.0, feat/improvement-2-theoretical-security) feat(security): add brute-force, differential, and linear cryptanalysis analysis
+043efa3 (tag: v0.1.0, feat/improvement-1-complexity-analysis) feat(analysis): add computational complexity analysis and operation counts
+1fb8d63 (tag: v0.0.0) docs(git): add GitHub remote setup and branching strategy
+646af44 feat(baseline): import original LSA implementation with SPN and Feistel
+1339410 chore(repo): initialize project and document baseline state
