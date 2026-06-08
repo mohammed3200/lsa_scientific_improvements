@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LSA v2.0 — Scientific Analysis Dashboard</title>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: #1e293b;
+      --text: #e2e8f0;
+      --accent: #00d4ff;
+      --pass: #00b894;
+      --fail: #ef4444;
+      --border: #334155;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    header {
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      padding: 2rem;
+      border-bottom: 2px solid var(--accent);
+      text-align: center;
+    }
+    header h1 { font-size: 2rem; color: var(--accent); margin-bottom: 0.5rem; }
+    header p { color: #94a3b8; }
+    .container { max-width: 1400px; margin: 0 auto; padding: 2rem; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 1.5rem; }
+    .card {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 1.5rem;
+      border: 1px solid var(--border);
+      transition: transform 0.2s;
+    }
+    .card:hover { transform: translateY(-2px); border-color: var(--accent); }
+    .card h2 { font-size: 1.2rem; margin-bottom: 1rem; color: var(--accent); border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
+    .metric { display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid var(--border); }
+    .metric:last-child { border-bottom: none; }
+    .metric-label { color: #94a3b8; }
+    .metric-value { font-weight: 600; }
+    .pass { color: var(--pass); }
+    .fail { color: var(--fail); }
+    table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+    th, td { padding: 0.6rem; text-align: left; border-bottom: 1px solid var(--border); }
+    th { color: var(--accent); font-weight: 600; }
+    .figure { margin-top: 1rem; text-align: center; }
+    .figure img { max-width: 100%; border-radius: 8px; border: 1px solid var(--border); }
+    .summary-bar {
+      display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+      margin: 2rem 0;
+    }
+    .summary-item {
+      background: var(--card); padding: 1rem 2rem; border-radius: 8px;
+      border: 1px solid var(--border); text-align: center;
+    }
+    .summary-item .number { font-size: 2rem; font-weight: 700; color: var(--accent); }
+    .summary-item .label { font-size: 0.85rem; color: #94a3b8; }
+    footer {
+      text-align: center; padding: 2rem; color: #64748b;
+      border-top: 1px solid var(--border); margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🔐 LSA v2.0 — Scientific Analysis Dashboard</h1>
+    <p>Lightweight Security Algorithm: 128-bit Key | 8 Rounds | CTR Mode | Constant-Time S-Box</p>
+  </header>
+
+  <div class="container">
+    <!-- Executive Summary -->
+    <section class="summary-bar">
+      <div class="summary-item">
+        <div class="number">{{ nist_pass }}/17</div>
+        <div class="label">NIST Tests Pass</div>
+      </div>
+      <div class="summary-item">
+        <div class="number">128</div>
+        <div class="label">Bit Key Size</div>
+      </div>
+      <div class="summary-item">
+        <div class="number">8</div>
+        <div class="label">Rounds</div>
+      </div>
+      <div class="summary-item">
+        <div class="number">{{ avalanche_sac }}%</div>
+        <div class="label">SAC Mean</div>
+      </div>
+      <div class="summary-item">
+        <div class="number">{{ figures_count }}</div>
+        <div class="label">Figures Generated</div>
+      </div>
+    </section>
+
+    <!-- NIST Results -->
+    <div class="grid">
+      <div class="card" style="grid-column: 1 / -1;">
+        <h2>📊 NIST SP 800-22 Statistical Test Results</h2>
+        <table>
+          <thead>
+            <tr><th>Test</th><th>p-value</th><th>Status</th></tr>
+          </thead>
+          <tbody>
+            {% for row in nist_rows %}
+            <tr>
+              <td>{{ row.test_name }}</td>
+              <td>{{ "%0.4f"|format(row.p_value) }}</td>
+              <td class="{{ 'pass' if row.status == 'PASS' else 'fail' }}">{{ row.status }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Figures Grid -->
+    <div class="grid" style="margin-top: 2rem;">
+      {% for fig in figures %}
+      <div class="card">
+        <h2>{{ fig.title }}</h2>
+        <div class="figure">
+          <img src="{{ fig.path }}" alt="{{ fig.title }}">
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- Avalanche Metrics -->
+    <div class="grid" style="margin-top: 2rem;">
+      <div class="card">
+        <h2>⚡ Avalanche Effect Metrics</h2>
+        {% for key, val in avalanche_items %}
+        <div class="metric">
+          <span class="metric-label">{{ key }}</span>
+          <span class="metric-value">{{ val }}</span>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="card">
+        <h2>🛡️ Side-Channel Resistance</h2>
+        {% for key, val in side_channel_items %}
+        <div class="metric">
+          <span class="metric-label">{{ key }}</span>
+          <span class="metric-value">{{ val }}</span>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>LSA v2.0 Scientific Analysis | Generated automatically from live simulation data</p>
+    <p>Repository: <a href="https://github.com/mohammed3200/lsa_scientific_improvements" style="color: var(--accent);">github.com/mohammed3200/lsa_scientific_improvements</a></p>
+  </footer>
+</body>
+</html>

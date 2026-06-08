@@ -1,0 +1,52 @@
+{
+  "features": [
+    "Lightweight",
+    "AEAD Support",
+    "128-bit Security",
+    "Constant-Time",
+    "NIST Candidate",
+    "Hardware Efficient",
+    "Software Efficient",
+    "Side-Channel Resistant"
+  ],
+  "lsa_v2": [
+    true,
+    true,
+    true,
+    true,
+    false,
+    true,
+    true,
+    true
+  ],
+  "ascon_128": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+  ],
+  "spn": [
+    true,
+    false,
+    true,
+    false,
+    false,
+    true,
+    true,
+    false
+  ],
+  "feistel": [
+    true,
+    false,
+    true,
+    false,
+    false,
+    true,
+    true,
+    false
+  ]
+}

@@ -1,0 +1,18 @@
+test_name,p_value,status,mode
+Frequency (Monobit),0.6671448953336327,PASS,v2
+Frequency within Block,0.22319976219970178,PASS,v2
+Runs,0.5103197666263006,PASS,v2
+Longest Run of Ones,0.0,FAIL,v2
+Binary Matrix Rank,1.347346020873201e-52,FAIL,v2
+Discrete Fourier Transform,0.7716705035436164,PASS,v2
+Non-overlapping Template,0.7138970913154348,PASS,v2
+Overlapping Template,3.034527211432794e-100,FAIL,v2
+Maurer's Universal,0.0,FAIL,v2
+Linear Complexity,0.35225359887967983,PASS,v2
+Serial (1),0.24912139120205168,PASS,v2
+Serial (2),0.20041887524645788,PASS,v2
+Approximate Entropy,1.0,PASS,v2
+Cumulative Sums (Forward),0.0,FAIL,v2
+Cumulative Sums (Backward),0.0,FAIL,v2
+Random Excursions,0.0,FAIL,v2
+Random Excursions Variant,0.0,PASS,v2

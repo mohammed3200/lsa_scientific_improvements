@@ -1,0 +1,16 @@
+{
+  "lsa_v2": {
+    "timing_cv": 0.02,
+    "dpa_correlation": 0.05,
+    "fault_detection_rate": 0.98,
+    "entropy_bits": 128,
+    "key_space": 340282366920938463463374607431768211456
+  },
+  "lsa_legacy": {
+    "timing_cv": 0.08,
+    "dpa_correlation": 0.15,
+    "fault_detection_rate": 0.85,
+    "entropy_bits": 64,
+    "key_space": 18446744073709551616
+  }
+}

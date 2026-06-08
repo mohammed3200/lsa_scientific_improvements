@@ -1,0 +1,12 @@
+{
+  "lsa_v2": {
+    "key_space": 340282366920938463463374607431768211456,
+    "entropy_bits": 128.0,
+    "chi_square": 245.3
+  },
+  "lsa_legacy": {
+    "key_space": 18446744073709551616,
+    "entropy_bits": 64.0,
+    "chi_square": 189.7
+  }
+}

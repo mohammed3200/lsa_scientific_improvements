@@ -1,0 +1,42 @@
+{
+  "lsa_v2": {
+    "XOR": 32,
+    "XNOR": 16,
+    "S-Box": 16,
+    "P-Table": 8,
+    "Shift": 8,
+    "AND": 8,
+    "OR": 8,
+    "Swap": 8
+  },
+  "lsa_legacy": {
+    "XOR": 20,
+    "XNOR": 10,
+    "S-Box": 10,
+    "P-Table": 0,
+    "Shift": 5,
+    "AND": 5,
+    "OR": 5,
+    "Swap": 5
+  },
+  "spn": {
+    "XOR": 48,
+    "XNOR": 0,
+    "S-Box": 16,
+    "P-Table": 16,
+    "Shift": 0,
+    "AND": 0,
+    "OR": 0,
+    "Swap": 0
+  },
+  "feistel": {
+    "XOR": 40,
+    "XNOR": 0,
+    "S-Box": 16,
+    "P-Table": 0,
+    "Shift": 8,
+    "AND": 8,
+    "OR": 0,
+    "Swap": 8
+  }
+}

@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LSA v2.0 — Scientific Analysis Dashboard</title>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: #1e293b;
+      --text: #e2e8f0;
+      --accent: #00d4ff;
+      --pass: #00b894;
+      --fail: #ef4444;
+      --border: #334155;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    header {
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      padding: 2rem;
+      border-bottom: 2px solid var(--accent);
+      text-align: center;
+    }
+    header h1 { font-size: 2rem; color: var(--accent); margin-bottom: 0.5rem; }
+    header p { color: #94a3b8; }
+    .container { max-width: 1400px; margin: 0 auto; padding: 2rem; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 1.5rem; }
+    .card {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 1.5rem;
+      border: 1px solid var(--border);
+      transition: transform 0.2s;
+    }
+    .card:hover { transform: translateY(-2px); border-color: var(--accent); }
+    .card h2 { font-size: 1.2rem; margin-bottom: 1rem; color: var(--accent); border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
+    .metric { display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid var(--border); }
+    .metric:last-child { border-bottom: none; }
+    .metric-label { color: #94a3b8; }
+    .metric-value { font-weight: 600; }
+    .pass { color: var(--pass); }
+    .fail { color: var(--fail); }
+    table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+    th, td { padding: 0.6rem; text-align: left; border-bottom: 1px solid var(--border); }
+    th { color: var(--accent); font-weight: 600; }
+    .figure { margin-top: 1rem; text-align: center; }
+    .figure img { max-width: 100%; border-radius: 8px; border: 1px solid var(--border); }
+    .summary-bar {
+      display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+      margin: 2rem 0;
+    }
+    .summary-item {
+      background: var(--card); padding: 1rem 2rem; border-radius: 8px;
+      border: 1px solid var(--border); text-align: center;
+    }
+    .summary-item .number { font-size: 2rem; font-weight: 700; color: var(--accent); }
+    .summary-item .label { font-size: 0.85rem; color: #94a3b8; }
+    footer {
+      text-align: center; padding: 2rem; color: #64748b;
+      border-top: 1px solid var(--border); margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🔐 LSA v2.0 — Scientific Analysis Dashboard</h1>
+    <p>Lightweight Security Algorithm: 128-bit Key | 8 Rounds | CTR Mode | Constant-Time S-Box</p>
+  </header>
+
+  <div class="container">
+    <!-- Executive Summary -->
+    <section class="summary-bar">
+      <div class="summary-item">
+        <div class="number">10/17</div>
+        <div class="label">NIST Tests Pass</div>
+      </div>
+      <div class="summary-item">
+        <div class="number">128</div>
+        <div class="label">Bit Key Size</div>
+      </div>
+      <div class="summary-item">
+        <div class="number">8</div>
+        <div class="label">Rounds</div>
+      </div>
+      <div class="summary-item">
+        <div class="number">23.2%</div>
+        <div class="label">SAC Mean</div>
+      </div>
+      <div class="summary-item">
+        <div class="number">10</div>
+        <div class="label">Figures Generated</div>
+      </div>
+    </section>
+
+    <!-- NIST Results -->
+    <div class="grid">
+      <div class="card" style="grid-column: 1 / -1;">
+        <h2>📊 NIST SP 800-22 Statistical Test Results</h2>
+        <table>
+          <thead>
+            <tr><th>Test</th><th>p-value</th><th>Status</th></tr>
+          </thead>
+          <tbody>
+            
+            <tr>
+              <td>Frequency (Monobit)</td>
+              <td>0.6671</td>
+              <td class="pass">PASS</td>
+            </tr>
+            
+            <tr>
+              <td>Frequency within Block</td>
+              <td>0.2232</td>
+              <td class="pass">PASS</td>
+            </tr>
+            
+            <tr>
+              <td>Runs</td>
+              <td>0.5103</td>
+              <td class="pass">PASS</td>
+            </tr>
+            
+            <tr>
+              <td>Longest Run of Ones</td>
+              <td>0.0000</td>
+              <td class="fail">FAIL</td>
+            </tr>
+            
+            <tr>
+              <td>Binary Matrix Rank</td>
+              <td>0.0000</td>
+              <td class="fail">FAIL</td>
+            </tr>
+            
+            <tr>
+              <td>Discrete Fourier Transform</td>
+              <td>0.7717</td>
+              <td class="pass">PASS</td>
+            </tr>
+            
+            <tr>
+              <td>Non-overlapping Template</td>
+              <td>0.7139</td>
+              <td class="pass">PASS</td>
+            </tr>
+            
+            <tr>
+              <td>Overlapping Template</td>
+              <td>0.0000</td>
+              <td class="fail">FAIL</td>
+            </tr>
+            
+            <tr>
+              <td>Maurer's Universal</td>
+              <td>0.0000</td>
+              <td class="fail">FAIL</td>
+            </tr>
+            
+            <tr>
+              <td>Linear Complexity</td>
+              <td>0.3523</td>
+              <td class="pass">PASS</td>
+            </tr>
+            
+            <tr>
+              <td>Serial (1)</td>
+              <td>0.2491</td>
+              <td class="pass">PASS</td>
+            </tr>
+            
+            <tr>
+              <td>Serial (2)</td>
+              <td>0.2004</td>
+              <td class="pass">PASS</td>
+            </tr>
+            
+            <tr>
+              <td>Approximate Entropy</td>
+              <td>1.0000</td>
+              <td class="pass">PASS</td>
+            </tr>
+            
+            <tr>
+              <td>Cumulative Sums (Forward)</td>
+              <td>0.0000</td>
+              <td class="fail">FAIL</td>
+            </tr>
+            
+            <tr>
+              <td>Cumulative Sums (Backward)</td>
+              <td>0.0000</td>
+              <td class="fail">FAIL</td>
+            </tr>
+            
+            <tr>
+              <td>Random Excursions</td>
+              <td>0.0000</td>
+              <td class="fail">FAIL</td>
+            </tr>
+            
+            <tr>
+              <td>Random Excursions Variant</td>
+              <td>0.0000</td>
+              <td class="pass">PASS</td>
+            </tr>
+            
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Figures Grid -->
+    <div class="grid" style="margin-top: 2rem;">
+      
+      <div class="card">
+        <h2>Key Expansion Time Comparison</h2>
+        <div class="figure">
+          <img src="../figures/fig01_key_expansion_time.png" alt="Key Expansion Time Comparison">
+        </div>
+      </div>
+      
+      <div class="card">
+        <h2>Security Level vs Key Size</h2>
+        <div class="figure">
+          <img src="../figures/fig02_security_level.png" alt="Security Level vs Key Size">
+        </div>
+      </div>
+      
+      <div class="card">
+        <h2>Energy Consumption vs Network Size</h2>
+        <div class="figure">
+          <img src="../figures/fig03_energy_consumption.png" alt="Energy Consumption vs Network Size">
+        </div>
+      </div>
+      
+      <div class="card">
+        <h2>Packet Delivery Ratio</h2>
+        <div class="figure">
+          <img src="../figures/fig04_pdr.png" alt="Packet Delivery Ratio">
+        </div>
+      </div>
+      
+      <div class="card">
+        <h2>NIST Test Results Heatmap</h2>
+        <div class="figure">
+          <img src="../figures/fig05_nist_heatmap.png" alt="NIST Test Results Heatmap">
+        </div>
+      </div>
+      
+      <div class="card">
+        <h2>Avalanche Effect Distribution</h2>
+        <div class="figure">
+          <img src="../figures/fig06_avalanche_distribution.png" alt="Avalanche Effect Distribution">
+        </div>
+      </div>
+      
+      <div class="card">
+        <h2>Operation Count Comparison</h2>
+        <div class="figure">
+          <img src="../figures/fig07_operation_counts.png" alt="Operation Count Comparison">
+        </div>
+      </div>
+      
+      <div class="card">
+        <h2>Side-Channel Resistance Radar</h2>
+        <div class="figure">
+          <img src="../figures/fig08_side_channel_radar.png" alt="Side-Channel Resistance Radar">
+        </div>
+      </div>
+      
+      <div class="card">
+        <h2>Baseline vs Improved vs Upgraded</h2>
+        <div class="figure">
+          <img src="../figures/fig09_before_after.png" alt="Baseline vs Improved vs Upgraded">
+        </div>
+      </div>
+      
+      <div class="card">
+        <h2>Operation Distribution</h2>
+        <div class="figure">
+          <img src="../figures/fig10_complexity_pie.png" alt="Operation Distribution">
+        </div>
+      </div>
+      
+    </div>
+
+    <!-- Avalanche Metrics -->
+    <div class="grid" style="margin-top: 2rem;">
+      <div class="card">
+        <h2>⚡ Avalanche Effect Metrics</h2>
+        
+        <div class="metric">
+          <span class="metric-label">SAC Mean</span>
+          <span class="metric-value">0.2316</span>
+        </div>
+        
+        <div class="metric">
+          <span class="metric-label">SAC StdDev</span>
+          <span class="metric-value">0.0531</span>
+        </div>
+        
+        <div class="metric">
+          <span class="metric-label">BIC Mean</span>
+          <span class="metric-value">0.0673</span>
+        </div>
+        
+        <div class="metric">
+          <span class="metric-label">NPCR Mean</span>
+          <span class="metric-value">23.16%</span>
+        </div>
+        
+        <div class="metric">
+          <span class="metric-label">UACI Mean</span>
+          <span class="metric-value">23.16%</span>
+        </div>
+        
+      </div>
+      <div class="card">
+        <h2>🛡️ Side-Channel Resistance</h2>
+        
+        <div class="metric">
+          <span class="metric-label">Timing CV (v2)</span>
+          <span class="metric-value">0.020</span>
+        </div>
+        
+        <div class="metric">
+          <span class="metric-label">DPA Correlation (v2)</span>
+          <span class="metric-value">0.050</span>
+        </div>
+        
+        <div class="metric">
+          <span class="metric-label">Fault Detection (v2)</span>
+          <span class="metric-value">98.00%</span>
+        </div>
+        
+        <div class="metric">
+          <span class="metric-label">Entropy Bits (v2)</span>
+          <span class="metric-value">128</span>
+        </div>
+        
+        <div class="metric">
+          <span class="metric-label">Timing CV (Legacy)</span>
+          <span class="metric-value">0.080</span>
+        </div>
+        
+        <div class="metric">
+          <span class="metric-label">DPA Correlation (Legacy)</span>
+          <span class="metric-value">0.150</span>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>LSA v2.0 Scientific Analysis | Generated automatically from live simulation data</p>
+    <p>Repository: <a href="https://github.com/mohammed3200/lsa_scientific_improvements" style="color: var(--accent);">github.com/mohammed3200/lsa_scientific_improvements</a></p>
+  </footer>
+</body>
+</html>
