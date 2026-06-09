@@ -18,6 +18,14 @@ from .encrypt_legacy import lsa_encrypt, lsa_decrypt
 from .encrypt_v2 import lsa_encrypt_v2, lsa_decrypt_v2
 from .modes import ctr_encrypt, ctr_decrypt
 from .s_box import constant_time_sbox_lookup
+from .sensor_data import (
+    read_system_sensors,
+    pack_sensor_block,
+    unpack_sensor_block,
+    generate_realistic_sensor_data,
+    generate_sensor_stream,
+    describe_sensor_block,
+)
 
 __all__ = [
     "LSAMode",
@@ -33,4 +41,10 @@ __all__ = [
     "ctr_encrypt",
     "ctr_decrypt",
     "constant_time_sbox_lookup",
+    "read_system_sensors",
+    "pack_sensor_block",
+    "unpack_sensor_block",
+    "generate_realistic_sensor_data",
+    "generate_sensor_stream",
+    "describe_sensor_block",
 ]
