@@ -82,11 +82,11 @@ def stage_1_key_expansion(mode: str = LSAMode.V2) -> Tuple[Any, int]:
     print("=" * 70)
     
     if mode == LSAMode.LEGACY:
-        master_key = 0xA5A5A5A5A5A5A5A5
+        master_key = random.getrandbits(64)
         round_keys = expand_key_legacy(master_key)
         print(f"  Mode:      LEGACY (64-bit key, 5 rounds)")
     else:
-        master_key = 0xA5A5A5A5A5A5A5A5A5A5A5A5A5A5A5A5
+        master_key = random.getrandbits(128)
         round_keys = expand_key_v2(master_key)
         print(f"  Mode:      v2 (128-bit key, 8 rounds)")
     
